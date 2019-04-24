@@ -76,6 +76,20 @@ public class controller {
             return false;
         }
     }
+	
+	//delete word
+    @PostMapping("/delete")
+    public boolean deleteWord(@RequestBody Word word){
+        try {
+            if(word.getKey() != null && word.getMean() != null && word.getType() != null){
+                wordService.deleteWord(word.getId);
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     //Get page index
     @GetMapping("/")
