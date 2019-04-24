@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form method="get">
+        <input type="text" list="languages" id="idkey"/>
+        <datalist id="languages" style="max-height: 200px;">
+            <th:block th:each="word : ${vm.getListWordDetail()}">
+                <option th:value="${word.getKey()}">
+            </th:block>
+        </datalist>
+        <input type="submit" value="Tìm" name="btSearch" >
+    </form>
+    <form method="post" th:action="@{/log}" >
+        <div th:if="${user} != null">
+            <input type="submit" value="Đăng Xuất" id="logout">
+            <input type="submit" value="Xóa">
+            <input type="submit" value="Sửa">
+            <input type="submit" value="Thêm">
+        </div>
+        <div th:if="${user} == null">
+            <input type="submit" value="Đăng Nhập" id="login">
+        </div>
+
+    </form>
+
+</body>
+</html>
