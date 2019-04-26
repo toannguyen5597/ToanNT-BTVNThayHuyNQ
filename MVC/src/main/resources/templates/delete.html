@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<form action="#" th:action="@{/deleteword}" th:object="${word}" method="get">
+    <input type="text" list="listwod" th:field="*{key}">
+    <datalist id="listwod">
+        <th:block th:each="wo : ${data}">
+            <option th:value="${wo.getKey()}"></option>
+        </th:block>
+    </datalist>
+    <div th:if="${word.getKey()} != null">
+        <input type="text" th:value="${word.getKey()}" th:field="*{key}">
+        <input type="hidden" th:value="${word.getId()}" th:field="*{id}">
+        <input type="text" th:value="${word.getMean()}" th:field="*{mean}">
+        <input type="text" th:value="${word.getType()}" th:field="*{type}">
+        <input type="submit" value="Xóa">
+    </div>
+    <input type="submit" value="Tìm">
+    <a href="adminsearch"><input type="button" value="Trang chủ"></a>
+</form>
+</body>
+</html>

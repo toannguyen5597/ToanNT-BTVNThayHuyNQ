@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý</title>
+</head>
+<body>
+    <form action="#" th:action="@{/adminsearch}" th:object="${myword}" method="get">
+        <input type="text" list="listword" th:field="*{key}">
+        <datalist id="listword">
+            <th:block th:each="word : ${data}">
+                <option th:value="${word.getKey()}"></option>
+            </th:block>
+        </datalist>
+        <select th:field="*{type}">
+            <option value="Tất cả">Tất cả</option>
+            <option th:each="i : ${types}" th:value="${i}" th:text="${i}">
+            </option>
+        </select>
+        <input type="submit" value="Tìm">
+        <div th:if="${words} != null">
+            <table >
+                <tr>
+                    <td>Word</td>
+                    <td>Mean</td>
+                    <td>Type</td>
+                </tr>
+                <br/>
+                <th:block th:each="wo : ${words}">
+                    <tr>
+                        <td><input th:value="${wo.getKey()}" style="border:1px"/></td>
+                        <td><input th:value="${wo.getMean()}" style="border:1px"/></td>
+                        <td><input th:value="${wo.getType()}" style="border:1px"/></td>
+<!--                        <td><input th:value="${wo.getId()}"></td>-->
+                        <td><a href=""></a></td>
+                        <td><input type="submit" value="Xóa" style="border: 1px"></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </form>
+    <div th:if="${user.getUsername() != null}">
+        <a href="updateword"><input type="button" value="Cập nhật từ"></a>
+        <a href="insertword"><input type="button" value="Thêm mới từ"></a>
+        <a href="deleteword"><input type="button" value="Xóa từ"></a>
+        <a href="importfile"><input type="button" value="Import File"></a>
+    </div>
+    <div th:if="${user.getUsername() == null}">
+        <a href="log"><input type="button" value="Đăng nhập"></a>
+    </div>
+
+</body>
+</html>

@@ -5,10 +5,19 @@
     <title>index</title>
 </head>
 <body>
-    <form method="post" name="Login" th:action="@{/direct}">
-        Username: <input type="text" name="username">
-        PassWord: <input type="password" name="password">
+
+    <form method="post" name="login" th:action="@{/log}" th:object="${user}">
+        <div th:if="${user.getUsername() == null}">
+        Username: <input type="text" name="username" th:field="*{username}">
+        PassWord: <input type="password" name="password" th:field="*{password}">
         <input type="submit" name="login" value="Login">
+        </div>
+        <div th:if="${user.getUsername() != null}">
+            <a href="log"><input type="button" value="Đăng Xuất"></a>
+        </div>
     </form>
+
+
+    <a href="adminsearch"><input type="button" value="Trang chủ"></a>
 </body>
 </html>

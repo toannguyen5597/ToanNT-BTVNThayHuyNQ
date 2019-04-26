@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert</title>
+</head>
+<body>
+    <form action="#" th:action="@{/insertword}" th:object="${word}" method="get">
+        Từ khóa: <input type="text" th:field="*{key}">
+        Nghĩa: <input type="text" th:field="*{mean}">
+        Loại: <select th:field="*{type}">
+        <option value="Tất cả">Tất cả</option>
+        <option th:each="i : ${types}" th:value="${i}" th:text="${i}">
+        </option>
+    </select>
+        <input type="submit" value="Thêm">
+    </form>
+    <a href="adminsearch"><input type="button" value="Trang chủ"></a>
+</body>
+</html>

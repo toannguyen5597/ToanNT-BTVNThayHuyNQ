@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface WordService {
     List<Word> getWordByKey(List<Word> word, String key);
+    List<Word> getWordByType(List<Word> word, String key);
+    Word getOneWordByKey(List<Word> word, String key);
 }
